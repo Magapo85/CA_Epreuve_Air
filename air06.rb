@@ -38,12 +38,21 @@ def trouverDansArray(array, carac)
         return index, sortie
 end
 
+#fonction pour trouver un caractere dans un array, comme .index()
+def checkLastArray(array, carac)
+        sortie = "ok"
+        if (array[0] != "+" && array[0] != "-") || (array[1..-1] != (array[1..-1].to_i).to_s && array[1..-1] != (array[1..-1].to_f).to_s) || trouverDansArray(",", array[1..-1])[1] == "erreur"
+        	sortie = "erreur"
+        end
+        return sortie
+end
+
 #fonction utile qui test si l'argument (nombre suppose entier) contient . ou , avant conversion et calcul
 def fauxFloatEntier()
-        i = numberArgument - 1
+        i = nombreArgument - 2
         sortie = "ok"
-        while ARGV[i - 1] && sortie == "ok"
-                if trouverDansArray(",", ARGV[i - 1])[1] == "erreur" || (ARGV[i - 1] != (ARGV[i - 1].to_i).to_s && ARGV[i - 1] != (ARGV[i - 1].to_f).to_s)
+        while i >= 0 && sortie == "ok"
+                if trouverDansArray(",", ARGV[i])[1] == "erreur" || (ARGV[i] != (ARGV[i].to_i).to_s && ARGV[i] != (ARGV[i].to_f).to_s)
                         sortie = "erreur"
                 end
                 i = i - 1
@@ -58,17 +67,17 @@ def operationMath(list, operand)
         for arg in 0...lgArg
 		calcul = list[arg]
 		if operand[0] == "+"
-			calcul = calcul + operand[1..].to_d
+			calcul = calcul + operand[1..-1].to_d
 		else
-			calcul = calcul - operand[1..].to_d
+			calcul = calcul - operand[1..-1].to_d
 		end
-                sortie = sortie + calcul.to_s + " "
+                sortie = sortie + (calcul.to_f).to_s + " "
         end
-        return sortie[0...-1]
+        return sortie[0..-1]
 end
 
 #coeur du programme
-if nombreArgument <= 1 || fauxFloatEntier() == "erreur" || (trouverDansArray(ARGV[longueurArgument(ARGV) - 1], "+") != "erreur" && trouverDansArray(ARGV[longueurArgument(ARGV) - 1], "-") != "erreur")
+if nombreArgument <= 1 || fauxFloatEntier() == "erreur" || (checkLastArray(ARGV[longueurArgument(ARGV) - 1], "+") == "erreur" && checkLastArray(ARGV[longueurArgument(ARGV) - 1], "-") == "erreur")
         puts "error"
 else
 	array = []
