@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 #programme qui fusionne deux listes d'entiers triee en les gardant triees,les deux listes seront separees par un argument "fusion", affiche error sinon
+#https://www.jdoodle.com/execute-ruby-online/
 
 require 'bigdecimal'
 require 'bigdecimal/util' #to_d
@@ -24,11 +25,11 @@ def longueurArgument(mot)
 end
 
 #fonction pour trouver un caractere dans un array, comme .index()
-def trouverDansArray(array, carac)
+def trouverDansArray(carac, array)
         sortie = "ok"
         index = longueurArgument(array)
         i = 0
-        while i < longueurArgument(array) && sortie == "ok"
+        while array[i] && sortie == "ok"
                 if array[i] == carac
                         sortie = "erreur"
                         index = i
@@ -42,7 +43,7 @@ end
 def fauxFloatEntier(array)
         i = 0
         sortie = "ok"
-        while array[i] && sortie == "ok"
+        while array[i]
                 if trouverDansArray(",", array[i])[1] == "erreur" || (array[i] != (array[i].to_i).to_s && array[i] != (array[i].to_f).to_s)
                         sortie = "erreur"
                 end
@@ -54,33 +55,37 @@ end
 def checkSorted(array)
 	sortie = "ok"
 	for i in 1...longueurArgument(array)
-		if array[i - 1] > array[i]
+		if array[i-1].to_d > array[i].to_d
 			sortie = "erreur"
+			break
 		end
 	end	
 	return sortie
 end
 
 def sortedFusion(array1, array2)
-	index = 0
 	sortie = array1
 	sortietemp = array1
+	b = 0
 	for b in 0...longueurArgument(array2)
-		new = array2[b].to_d
+		index = -1
+		i = 0
+		new = array2[b]
 		for i in 0...longueurArgument(sortie) 
-			if new <= sortie[i].to_d
+			if new.to_d < sortie[i].to_d
+				index = i
 				break
 			end
-			index = i + 1
 		end
 		if index == 0
 			sortie = [new, sortie]
+		elsif index == - 1
+			sortie = sortie.push(new)
 		else	
 			sortietemp = sortie
-			sortie = sortie[0,index]
+			sortie = sortie[0...index]
 			sortie = sortie.push(new)
-			sortie = sortie + sortietemp[index,longueurArgument(sortietemp)-1]
-			#array = array[0...index-1] + [new] + array[index...longueurArgument(array)-1]
+			sortie = sortie + sortietemp[index...longueurArgument(sortietemp)]
 		end
 	end
 	return sortie
@@ -91,41 +96,39 @@ def arrayToString(array)
 	for i in 0...longueurArgument(array)
 		sortie = sortie + array[i] + " "
 	end
-	return sortie[0...-1]# + "f"
+	return sortie[0...-1]
 end
 
 def checkFusionStructure
-	sortie = "erreur"
+	para = "erreur"
 	index = -1
+	sortie = "ok"
 	for arr in 0...nombreArgument
-		#puts arr
 		if ARGV[arr] == "fusion"
-			sortie = "ok"
+			para = "ok"
 			index = arr
 			break
 		end
 	end
-	#puts "debut"
-	#puts ARGV[0...index].to_a
-	#puts "fin"
-	#puts ARGV[index + 1...nombreArgument].to_a
-	#puts "milieu"
-	#puts ARGV[index]
-	if sortie == "ok" && fauxFloatEntier(ARGV[0...index].to_a) == "ok" && fauxFloatEntier(ARGV[index + 1...nombreArgument].to_a) == "ok"
-		if checkSorted(ARGV[0...index].to_a) == "erreur" || checkSorted(ARGV[index + 1...nombreArgument].to_a) == "erreur"
-			sortie = "erreur"
-		end
+	if index+1 == nombreArgument
+		para = "erreur"
 	end
-	#puts index
+	if para == "ok" && fauxFloatEntier(ARGV[0...index]) == "ok" && fauxFloatEntier(ARGV[index+1...nombreArgument]) == "ok"
+		if checkSorted(ARGV[0...index]) == "erreur" || checkSorted(ARGV[index+1...nombreArgument]) == "erreur"
+			sortie = "erreur"
+		else 
+			sortie = "ok"
+		end
+	else
+		sortie = "erreur"
+	end
 	return sortie, index
 end
 #coeur du programme
 if nombreArgument <= 2 || checkFusionStructure[0] == "erreur"
 	puts "error"
 else
-	puts "array1"
-        puts array1 = ARGV[0...checkFusionStructure[1]].to_a
-	puts "array2"
-	puts array2 = ARGV[checkFusionStructure[1] + 1...nombreArgument].to_a
+        array1 = ARGV[0...checkFusionStructure[1]]
+	array2 = ARGV[checkFusionStructure[1]+1...nombreArgument]
         puts arrayToString(sortedFusion(array1, array2))
 end
