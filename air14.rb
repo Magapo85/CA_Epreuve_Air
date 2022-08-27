@@ -160,11 +160,10 @@ if File.exist?(nom)
         numero = 0
         nombreTestSuccess = 0
 
-        total = 4
-        nombreTestSuccess, numero = test(nom, numero, total, Shellwords.escape("je\sm\'appelle\sguillaume"), "je\nm\'appelle\nguillaume\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "\n", " error\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "5555", "5555\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "je\ssuis\sle\snumero\s2012", "error\n", nombreTestSuccess)
+        total = 3
+        nombreTestSuccess, numero = test(nom, numero, total, "je\stest\sdes\strucs" + " " + Shellwords.escape("\s"), "je test des trucs\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "\n", "error\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "5555\s2", "error\n", nombreTestSuccess)
 
         nombreTestSuccessTotal, nombreTest = fin(nom[0...-3], nombreTestSuccess, total, nombreTestSuccessTotal, nombreTest)
 else
@@ -173,15 +172,15 @@ end
 
 nom = "air04.rb"
 if File.exist?(nom)
-        #debut des tests avec air01
+        #debut des tests avec air04
         numero = 0
         nombreTestSuccess = 0
 
         total = 4
-        nombreTestSuccess, numero = test(nom, numero, total, Shellwords.escape("je\sm\'appelle\sguillaume"), "je\nm\'appelle\nguillaume\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "1 2 3 4 5 4 3 2 1", "5\n", nombreTestSuccess)
         nombreTestSuccess, numero = test(nom, numero, total, "\n", "error\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "5555", "5555\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "je\ssuis\sle\snumero\s2012", "error\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "5555", "error\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "bonjour monsieur bonjour madame", "monsieur\nmadame\n", nombreTestSuccess)
 
         nombreTestSuccessTotal, nombreTest = fin(nom[0...-3], nombreTestSuccess, total, nombreTestSuccessTotal, nombreTest)
 else
@@ -190,15 +189,13 @@ end
 
 nom = "air05.rb"
 if File.exist?(nom)
-        #debut des tests avec air01
+        #debut des tests avec air05
         numero = 0
         nombreTestSuccess = 0
 
-        total = 4
-        nombreTestSuccess, numero = test(nom, numero, total, Shellwords.escape("je\sm\'appelle\sguillaume"), "je\nm\'appelle\nguillaume\n", nombreTestSuccess)
+        total = 2
+        nombreTestSuccess, numero = test(nom, numero, total, Shellwords.escape("Hello my lady,  bien ou quoi ??"), "Helo my lady, bien ou quoi ?\n", nombreTestSuccess)
         nombreTestSuccess, numero = test(nom, numero, total, "\n", "error\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "5555", "5555\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "je\ssuis\sle\snumero\s2012", "error\n", nombreTestSuccess)
 
         nombreTestSuccessTotal, nombreTest = fin(nom[0...-3], nombreTestSuccess, total, nombreTestSuccessTotal, nombreTest)
 else
