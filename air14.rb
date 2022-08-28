@@ -58,6 +58,8 @@ def test(nom, numero, total, entree, sortie, totalSuccess)
 	debut = " " + nom[0...-3] + " "
         milieu = "(" + numerosortie.to_s + "/" + total.to_s + ") : "
 	output = `ruby #{nom} #{entree}`#appel de la fonction pour executer dans le terminal automatiquement
+	puts output
+	puts sortie
 	if output == sortie
         	puts "  " + debut.magenta.bg_gray.bold.underline + milieu.blue.bg_gray.bold.underline + " success".green
         	success += 1
@@ -204,15 +206,14 @@ end
 
 nom = "air06.rb"
 if File.exist?(nom)
-        #debut des tests avec air01
+        #debut des tests avec air06
         numero = 0
         nombreTestSuccess = 0
 
-        total = 4
-        nombreTestSuccess, numero = test(nom, numero, total, Shellwords.escape("je\sm\'appelle\sguillaume"), "je\nm\'appelle\nguillaume\n", nombreTestSuccess)
+        total = 3
+        nombreTestSuccess, numero = test(nom, numero, total, "1 2 3 4 5 +2", "3.0 4.0 5.0 6.0 7.0\n", nombreTestSuccess)
         nombreTestSuccess, numero = test(nom, numero, total, "\n", "error\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "5555", "5555\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "je\ssuis\sle\snumero\s2012", "error\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "10 11 12 20 -5", "5.0 6.0 7.0 15.0\n", nombreTestSuccess)
 
         nombreTestSuccessTotal, nombreTest = fin(nom[0...-3], nombreTestSuccess, total, nombreTestSuccessTotal, nombreTest)
 else
@@ -221,15 +222,14 @@ end
 
 nom = "air07.rb"
 if File.exist?(nom)
-        #debut des tests avec air01
+        #debut des tests avec air07
         numero = 0
         nombreTestSuccess = 0
 
-        total = 4
-        nombreTestSuccess, numero = test(nom, numero, total, Shellwords.escape("je\sm\'appelle\sguillaume"), "je\nm\'appelle\nguillaume\n", nombreTestSuccess)
+        total = 3
         nombreTestSuccess, numero = test(nom, numero, total, "\n", "error\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "5555", "5555\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "je\ssuis\sle\snumero\s2012", "error\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "Michel Albert Therese Benoit t", "Michel\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "Michel Albert Therese Benoit a", "Michel, Therese, Benoit\n", nombreTestSuccess)
 
         nombreTestSuccessTotal, nombreTest = fin(nom[0...-3], nombreTestSuccess, total, nombreTestSuccessTotal, nombreTest)
 else
