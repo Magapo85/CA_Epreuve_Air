@@ -73,7 +73,7 @@ def operationMath(list, operand)
 		end
                 sortie = sortie + (calcul.to_f).to_s + " "
         end
-        return sortie[0..-1]
+        return sortie[0...-1]
 end
 
 #coeur du programme

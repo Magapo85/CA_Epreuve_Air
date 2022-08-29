@@ -58,7 +58,7 @@ def test(nom, numero, total, entree, sortie, totalSuccess)
 	debut = " " + nom[0...-3] + " "
         milieu = "(" + numerosortie.to_s + "/" + total.to_s + ") : "
 	output = `ruby #{nom} #{entree}`#appel de la fonction pour executer dans le terminal automatiquement
-	puts output
+	puts output.to_s
 	puts sortie
 	if output == sortie
         	puts "  " + debut.magenta.bg_gray.bold.underline + milieu.blue.bg_gray.bold.underline + " success".green
@@ -121,7 +121,7 @@ else
         noExist(nom)
 end
 
-nom = "air01.rb"
+nom = "Xair01.rb"
 if File.exist?(nom)
 	#debut des tests avec air01
 	numero = 0
@@ -138,7 +138,7 @@ else
 	noExist(nom)
 end
 
-nom = "air02.rb"
+nom = "Xair02.rb"
 if File.exist?(nom)
         #debut des tests avec air02
         numero = 0
@@ -156,7 +156,7 @@ else
         noExist(nom)
 end
 
-nom = "air03.rb"
+nom = "Xair03.rb"
 if File.exist?(nom)
         #debut des tests avec air03
         numero = 0
@@ -172,7 +172,7 @@ else
         noExist(nom)
 end
 
-nom = "air04.rb"
+nom = "Xair04.rb"
 if File.exist?(nom)
         #debut des tests avec air04
         numero = 0
@@ -189,7 +189,7 @@ else
         noExist(nom)
 end
 
-nom = "air05.rb"
+nom = "Xair05.rb"
 if File.exist?(nom)
         #debut des tests avec air05
         numero = 0
@@ -204,7 +204,7 @@ else
         noExist(nom)
 end
 
-nom = "air06.rb"
+nom = "Xair06.rb"
 if File.exist?(nom)
         #debut des tests avec air06
         numero = 0
@@ -220,7 +220,7 @@ else
         noExist(nom)
 end
 
-nom = "air07.rb"
+nom = "Xair07.rb"
 if File.exist?(nom)
         #debut des tests avec air07
         numero = 0
@@ -236,52 +236,47 @@ else
         noExist(nom)
 end
 
-nom = "air08.rb"
+nom = "Xair08.rb"
 if File.exist?(nom)
-        #debut des tests avec air01
+        #debut des tests avec air08
         numero = 0
         nombreTestSuccess = 0
 
-        total = 4
-        nombreTestSuccess, numero = test(nom, numero, total, Shellwords.escape("je\sm\'appelle\sguillaume"), "je\nm\'appelle\nguillaume\n", nombreTestSuccess)
+        total = 3
         nombreTestSuccess, numero = test(nom, numero, total, "\n", "error\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "5555", "5555\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "je\ssuis\sle\snumero\s2012", "error\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "1 3 4 2", "1 2 3 4\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "10 20 30 40 50 60 70 90 33", "10 20 30 33 40 50 60 70 90\n", nombreTestSuccess)
 
         nombreTestSuccessTotal, nombreTest = fin(nom[0...-3], nombreTestSuccess, total, nombreTestSuccessTotal, nombreTest)
 else
         noExist(nom)
 end
 
-nom = "air09.rb"
+nom = "Xair09.rb"
 if File.exist?(nom)
-        #debut des tests avec air01
+        #debut des tests avec air09
         numero = 0
         nombreTestSuccess = 0
 
-        total = 4
-        nombreTestSuccess, numero = test(nom, numero, total, Shellwords.escape("je\sm\'appelle\sguillaume"), "je\nm\'appelle\nguillaume\n", nombreTestSuccess)
+        total = 2
         nombreTestSuccess, numero = test(nom, numero, total, "\n", "error\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "5555", "5555\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "je\ssuis\sle\snumero\s2012", "error\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "10 20 30 fusion 15 25 35", "10 15 20 25 30 35\n", nombreTestSuccess)
 
         nombreTestSuccessTotal, nombreTest = fin(nom[0...-3], nombreTestSuccess, total, nombreTestSuccessTotal, nombreTest)
 else
         noExist(nom)
 end
 
-nom = "air10.rb"
+nom = "Xair10.rb"
 if File.exist?(nom)
-        #debut des tests avec air01
+        #debut des tests avec air10
         numero = 0
         nombreTestSuccess = 0
 
-        total = 4
-        nombreTestSuccess, numero = test(nom, numero, total, Shellwords.escape("je\sm\'appelle\sguillaume"), "je\nm\'appelle\nguillaume\n", nombreTestSuccess)
+        total = 2
         nombreTestSuccess, numero = test(nom, numero, total, "\n", "error\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "5555", "5555\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "je\ssuis\sle\snumero\s2012", "error\n", nombreTestSuccess)
-
+        nombreTestSuccess, numero = test(nom, numero, total, "Michel Albert Therese Benoit", "Albert, Therese, Benoit, Michel\n", nombreTestSuccess)
+        
         nombreTestSuccessTotal, nombreTest = fin(nom[0...-3], nombreTestSuccess, total, nombreTestSuccessTotal, nombreTest)
 else
         noExist(nom)
@@ -289,49 +284,46 @@ end
 
 nom = "air11.rb"
 if File.exist?(nom)
-        #debut des tests avec air01
+        #debut des tests avec air11
         numero = 0
         nombreTestSuccess = 0
 
         total = 4
-        nombreTestSuccess, numero = test(nom, numero, total, Shellwords.escape("je\sm\'appelle\sguillaume"), "je\nm\'appelle\nguillaume\n", nombreTestSuccess)
         nombreTestSuccess, numero = test(nom, numero, total, "\n", "error\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "5555", "5555\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "je\ssuis\sle\snumero\s2012", "error\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "README.txt", "Troisième epreuve du CA \nAir \nhttps://docs.google.com/presentation/d/1Wh8rbIe3Ger0gugDEISctnnLfS9r4-s_PM0EpNyjitI/edit\#slide=id.g10497f2623c_0_40\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "README", "error\n", nombreTestSuccess)
+	nombreTestSuccess, numero = test(nom, numero, total, "a.txt", "je danse le mia\nok \npl\n", nombreTestSuccess)
 
         nombreTestSuccessTotal, nombreTest = fin(nom[0...-3], nombreTestSuccess, total, nombreTestSuccessTotal, nombreTest)
 else
         noExist(nom)
 end
 
-nom = "air12.rb"
+nom = "Xair12.rb"
 if File.exist?(nom)
-        #debut des tests avec air01
+        #debut des tests avec air12
         numero = 0
         nombreTestSuccess = 0
 
-        total = 4
-        nombreTestSuccess, numero = test(nom, numero, total, Shellwords.escape("je\sm\'appelle\sguillaume"), "je\nm\'appelle\nguillaume\n", nombreTestSuccess)
+        total = 3
         nombreTestSuccess, numero = test(nom, numero, total, "\n", "error\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "5555", "5555\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "je\ssuis\sle\snumero\s2012", "error\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "ox 5", "error\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "O 5", "    O    \n   OOO   \n  OOOOO  \n OOOOOOO \nOOOOOOOOO\n", nombreTestSuccess)
 
         nombreTestSuccessTotal, nombreTest = fin(nom[0...-3], nombreTestSuccess, total, nombreTestSuccessTotal, nombreTest)
 else
         noExist(nom)
 end
 
-nom = "air13.rb"
+nom = "Xair13.rb"
 if File.exist?(nom)
-        #debut des tests avec air01
+        #debut des tests avec air13
         numero = 0
         nombreTestSuccess = 0
 
-        total = 4
-        nombreTestSuccess, numero = test(nom, numero, total, Shellwords.escape("je\sm\'appelle\sguillaume"), "je\nm\'appelle\nguillaume\n", nombreTestSuccess)
+        total = 2
         nombreTestSuccess, numero = test(nom, numero, total, "\n", "error\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "5555", "5555\n", nombreTestSuccess)
-        nombreTestSuccess, numero = test(nom, numero, total, "je\ssuis\sle\snumero\s2012", "error\n", nombreTestSuccess)
+        nombreTestSuccess, numero = test(nom, numero, total, "6 5 4 3 2 1", "1.0 2.0 3.0 4.0 5.0 6.0\n", nombreTestSuccess)
 
         nombreTestSuccessTotal, nombreTest = fin(nom[0...-3], nombreTestSuccess, total, nombreTestSuccessTotal, nombreTest)
 else

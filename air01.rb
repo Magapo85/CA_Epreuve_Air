@@ -33,10 +33,12 @@ def maFonctionSeparatrice (chaine, separateur)
 				break
 			end
 		end
-		if caracChaine == longueurArgument(chaine) - 1 || sep == 1
+		if sep == 1
 			fin = caracChaine + 1
-			tableau.push(chaine[debut...fin])
+			tableau.push(chaine[debut...fin-1])
 			debut = fin
+		elsif caracChaine == longueurArgument(chaine) - 1
+			tableau.push(chaine[debut...longueurArgument(chaine)])
 		end
 	end
 	return tableau
